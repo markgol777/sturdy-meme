@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { loadavg } from 'os';
+import { AccountService } from 'src/app/services/account/account.service';
 import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
@@ -11,15 +12,19 @@ export class HeaderComponent implements OnInit {
   public show: boolean = false;
   public basket: Array<any> = [];
   public showCircle:boolean = false;
-
+  public isLogin = false;
+  public loginUrl = '';
+  public loginPage = '';
   public menu = false;
   public total: number = 0;
 
-  constructor(private orderService:OrderService) { }
+  constructor(private orderService:OrderService, public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.laodBasket();
     this.updateBasket();
+    this.checkUserLogin();
+    this.checkUpdatesUserLogin()
   }
 
   showMenu() {
@@ -71,4 +76,26 @@ export class HeaderComponent implements OnInit {
   }
 
   
+  checkUserLogin(): void {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
+    if(currentUser && currentUser.role === 'ADMIN'){
+      this.isLogin = true;
+      this.loginUrl = 'admin/discount';
+      this.loginPage = 'Admin';
+    } else if(currentUser && currentUser.role === 'USER') {
+      this.isLogin = true;
+      this.loginUrl = 'cabinet';
+      this.loginPage = 'Cabinet';
+    } else {
+      this.isLogin = false;
+      this.loginUrl = '';
+      this.loginPage = '';
+    }
+  }
+
+  checkUpdatesUserLogin(): void {
+    this.accountService.isUserLogin$.subscribe(() => {
+      this.checkUserLogin();
+    })
+  }
 }

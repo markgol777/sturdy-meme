@@ -69,5 +69,23 @@
       "image": "https://firebasestorage.googleapis.com/v0/b/monosushi-ua.appspot.com/o/images%2FScreenshot%20(1).png?alt=media&token=ee143d8c-868a-4b3e-abd3-11e9ae6a2c52",
       "id": 1
     }
+  ],
+
+  "auth": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "qwerty123",
+      "fullName": "Petro Petriv",
+      "role": "ADMIN"
+    },
+
+    {
+      "id": 2,
+      "email": "user@gmail.com",
+      "password": "qwerty123",
+      "fullName": "Pavlo Pavliv",
+      "role": "USER"
+    }
   ]
 }

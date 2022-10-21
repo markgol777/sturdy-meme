@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account/account.service';
 import { DiscountService } from 'src/app/services/discount/discount.service';
 
 @Component({
@@ -8,8 +10,14 @@ import { DiscountService } from 'src/app/services/discount/discount.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private service: DiscountService) { }
+  constructor(private service: DiscountService, private router: Router, private accountService: AccountService) { }
 
   ngOnInit(): void { }
+
+  logout(): void {
+    this.router.navigate(['/']);
+    localStorage.removeItem('currentUser');
+    this.accountService.isUserLogin$.next(true);
+  }
 
 }

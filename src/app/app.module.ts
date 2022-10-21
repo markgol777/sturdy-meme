@@ -22,6 +22,8 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductInfoComponent } from './pages/product-info/product-info.component';
 import { DiscountInfoComponent } from './pages/discount-info/discount-info.component';
 import { LoginComponent } from './pages/login/login.component';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { OrderComponent } from './pages/admin/order/order.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +41,13 @@ import { LoginComponent } from './pages/login/login.component';
     ProductsComponent,
     ProductInfoComponent,
     DiscountInfoComponent,
-    LoginComponent
+    LoginComponent,
+    CabinetComponent,
+    OrderComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

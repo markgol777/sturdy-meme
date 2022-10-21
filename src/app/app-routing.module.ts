@@ -13,6 +13,8 @@ import { ProductAdminComponent } from './pages/admin/product-admin/product-admin
 import { DiscountInfoComponent } from './pages/discount-info/discount-info.component';
 import { AdminAuthGuard } from './shared/guards/admin-auth.guard';
 import { LoginComponent } from './pages/login/login.component';
+import { CabinetComponent } from './pages/cabinet/cabinet.component';
+import { OrderComponent } from './pages/admin/order/order.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -23,10 +25,13 @@ const routes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
   {path: 'delivery-payment', component: DeliveryPaymentComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'cabinet', component: CabinetComponent},
   {path: 'admin', canActivate:[AdminAuthGuard], component: AdminComponent},
   {path: 'admin/discount', canActivate:[AdminAuthGuard], component: DiscountAdminComponent},
   {path: 'admin/category', canActivate:[AdminAuthGuard], component: CategoryAdminComponent},
-  {path: 'admin/product', canActivate:[AdminAuthGuard], component: ProductAdminComponent}
+  {path: 'admin/product', canActivate:[AdminAuthGuard], component: ProductAdminComponent},
+  {path: 'admin/order', canActivate:[AdminAuthGuard], component: OrderComponent}
+
 ];
 
 @NgModule({
