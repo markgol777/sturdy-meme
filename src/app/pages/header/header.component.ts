@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { loadavg } from 'os';
 import { AccountService } from 'src/app/services/account/account.service';
 import { OrderService } from 'src/app/services/order/order.service';
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public menu = false;
   public total: number = 0;
 
-  constructor(private orderService:OrderService, public accountService: AccountService) { }
+  constructor(private orderService:OrderService, public accountService: AccountService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.laodBasket();
@@ -77,6 +79,8 @@ export class HeaderComponent implements OnInit {
 
   
   checkUserLogin(): void {
+    console.log('hi');
+    
     const currentUser = JSON.parse(localStorage.getItem('currentUser') as string);
     if(currentUser && currentUser.role === 'ADMIN'){
       this.isLogin = true;
@@ -84,6 +88,7 @@ export class HeaderComponent implements OnInit {
       this.loginPage = 'Admin';
     } else if(currentUser && currentUser.role === 'USER') {
       this.isLogin = true;
+      console.log('meow')
       this.loginUrl = 'cabinet';
       this.loginPage = 'Cabinet';
     } else {
@@ -97,5 +102,9 @@ export class HeaderComponent implements OnInit {
     this.accountService.isUserLogin$.subscribe(() => {
       this.checkUserLogin();
     })
+  }
+
+  openDialog() {
+    this.dialog.open(LoginModalComponent, {});
   }
 }

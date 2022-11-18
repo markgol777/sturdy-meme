@@ -1,0 +1,21 @@
+<div class="modal-container">
+    <form class="form" [formGroup]="authForm">
+        <div class="email-input">
+            <mat-form-field  class="email" appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" formControlName="email" [formControl]="email" required>
+            </mat-form-field>
+        </div>
+        <div class="password-input">
+            <mat-form-field class="password" appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
+    <button class="login-btn" mat-button (click)="loginUser()">Login</button>
+</div>

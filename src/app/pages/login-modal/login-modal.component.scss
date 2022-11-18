@@ -1,0 +1,25 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 200px;
+
+    .form {
+        width: 100%;
+
+        .email-input,
+        .password-input {
+            width: 100%;
+        }
+
+        .email,
+        .password {
+            width: 100%;
+        }
+
+        .login-btn {
+            width: 100%;
+        }
+    }
+}
