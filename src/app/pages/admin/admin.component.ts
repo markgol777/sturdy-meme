@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account/account.service';
 import { DiscountService } from 'src/app/services/discount/discount.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+// import { getAuth, signOut } from "firebase/auth";
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +12,7 @@ import { DiscountService } from 'src/app/services/discount/discount.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private service: DiscountService, private router: Router, private accountService: AccountService) { }
+  constructor(private service: DiscountService, private router: Router, private accountService: AccountService, public afAuth: AngularFireAuth) { }
 
   ngOnInit(): void { }
 
@@ -18,6 +20,13 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/']);
     localStorage.removeItem('currentUser');
     this.accountService.isUserLogin$.next(true);
+    this.afAuth.signOut();
+    // const auth = getAuth();
+    // signOut(auth).then(() => {
+    //   console.log('sign out')
+    // }).catch((e) => {
+    //   console.log(e)
+    // });
   }
 
 }

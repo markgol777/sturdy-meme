@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatIconModule } from '@angular/material/icon';
     LoginModalComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     BrowserModule,
     FormsModule,

@@ -60,11 +60,11 @@ export class LoginModalComponent implements OnInit {
       const currentUser:any = {...user, uid: credentials.user.uid};
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
       console.log(currentUser.role);
-      // if (currentUser && currentUser.role === 'ADMIN') {
-      //   this.router.navigate(['/admin/discount']);
-      // } else if (currentUser && currentUser.role === 'USER') {
-      //   this.router.navigate(['/cabinet']);
-      // }
+      if (currentUser && currentUser.role === 'ADMIN') {
+        return this.router.navigate(['/admin/discount']);
+      } else if (currentUser && currentUser.role === 'USER') {
+        return this.router.navigate(['/cabinet']);
+      }
     }, (e) => {
       console.log(e)
     })
